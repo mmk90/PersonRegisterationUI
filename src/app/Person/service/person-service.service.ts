@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Person } from '../model/person';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +21,11 @@ export class PersonServiceService {
   }
 
   post() {
-    return this.http.post(this.baseUrl, this.person).subscribe(res => { this.get() }, err => { console.log(err) });
+     return this.http.post(this.baseUrl, this.person).subscribe(res => { this.get() }, err => { console.log(err) });
   }
 
   put() {
-    return this.http.put(`${this.baseUrl}/${this.person.id}`, this.person).subscribe(res => { this.get() }, err => { console.log(err) });
+    return this.http.put(`${this.baseUrl}/${this.person.id}`, this.person).subscribe(res => { this.get(); }, err => { console.log(err) });
   }
 
   delete(personId: number | string) {
